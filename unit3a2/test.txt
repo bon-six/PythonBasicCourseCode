@@ -1,0 +1,3 @@
+this is fist line writen into the file
+and here the second line.
+ and third line together.
