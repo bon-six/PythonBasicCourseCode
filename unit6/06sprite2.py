@@ -84,6 +84,8 @@ class MyFloorSprite(pygame.sprite.DirtySprite):
         self.visible = 1
 
     def update(self, *args):
+        # only initially need to draw. after then, because this is static,
+        # no need draw in following game loop.
         self.dirty = 0
         
    

@@ -79,13 +79,13 @@ while game_on: # game loop. one round is one Frame.
         print('content', event.__dict__)
         
         if event.type==pygame.QUIT:
-            # before QUIT, there always one WINDOWCLOSE event. can respond to that event instead to exit the program.
+            # before QUIT, there always one WINDOWCLOSE event.
+            # can respond to that event instead to exit the program.
             game_on = False
             break
-
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_F4 and event.mod&pygame.KMOD_ALT:
-                # actually cannot get this KEYDOWN and KEYUP, but will be a WINDOWCLOSE and QUIT,
+                # actually cannot get this KEYDOWN and KEYUP, but WINDOWCLOSE and QUIT,
                 # tested in windows platform pygame
                 game_on = False
                 break
@@ -107,6 +107,7 @@ while game_on: # game loop. one round is one Frame.
             elif event.state==pygame.APPINPUTFOCUS:
                 if event.gain: # program get focus (window at front layer)
                     # always WINDOWFOCUSGAINED event follow. can process that event instead.
+                    # after WINDOWFOCUSGAINED, always has VIDEOEXPOSE, and WINDOWEXPOSED
                     pass
                 else:    # program lost focus (window at back layer)
                     # always WINDOWFOCUSLOST event follow. can process that event instead.
@@ -124,12 +125,22 @@ while game_on: # game loop. one round is one Frame.
             #    1. one KEYDOWN event,
             #    2. then follow a series of TEXTINPUT event,
             #    3. then finally one KEYUP event.
+            # if press and immidiately release key, will be
+            #    1. one KEYDOWN event.
+            #    2. one TEXTINPUT event.
+            #    3. one KEYUP event.
             pass
         elif event.type == pygame.MOUSEBUTTONDOWN:
             pass
         elif event.type == pygame.MOUSEBUTTONUP:
             pass
         elif event.type == pygame.MOUSEMOTION:
+            pass
+        elif event.type == pygame.DROPBEGIN:
+            pass
+        elif event.type == pygame.DROPFILE:
+            pass
+        elif event.type == pygame.DROPCOMPLETE:
             pass
 
     if game_on == False:  # receive command to exit game
