@@ -22,3 +22,10 @@ for line in fileinput.input():
     print('filename is ', fileinput.filename())
 
 fileinput.close()
+
+
+# stdout
+'''
+import sys
+sys.stdout.write("some message to stdout...")
+'''
