@@ -1,10 +1,10 @@
 
-
 import turtle
 
 
 t = turtle.Pen()
-s = turtle.Screen()
+s = t.getscreen()
+# s = turtle.Screen()
 
 s.title('My Turtle Drawing')
 s.bgcolor('white')
@@ -13,7 +13,7 @@ t.shape('classic')
 t.shapesize(1,1,1)
 
 
-t.pen(pencolor='red',fillcolor='green',pensize=3,speed=5)
+t.pen(pencolor='red', fillcolor='green', pensize=3, speed=5)
 
 t.begin_fill()
 

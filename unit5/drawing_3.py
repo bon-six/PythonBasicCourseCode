@@ -1,21 +1,16 @@
 
-
 import turtle
 
-
 t = turtle.Pen()
-s = turtle.Screen()
-#s = t.getscreen()
+s = t.getscreen()
+# s = turtle.Screen()
 
 s.title('My Turtle Drawing')
 s.bgcolor('black')
 
 t.shape('classic')
 t.shapesize(1,1,1)
-
-
 t.pen(speed=0)
-
 
 # 2 spin rosette, 4 sides
 
@@ -34,7 +29,6 @@ for i in range(100):
     t.setheading(heading)
     t.forward(i*2)
     t.left(92)
-
 
 turtle.done()
 #s.mainloop()

@@ -1,10 +1,9 @@
 
-
 import turtle
-
 
 t = turtle.Pen()
 s = t.getscreen()
+# s = turtle.Screen()
 
 s.title('My Turtle Drawing')
 s.bgcolor('white')
@@ -14,7 +13,6 @@ t.shapesize(1,1,1)
 
 t.speed(0)
 
-
 # spinral stairs, 3 sides
 
 for i in range(150):
@@ -22,10 +20,3 @@ for i in range(150):
     t.left(121)
 
 turtle.done()
-
-
-
-
-
-
-

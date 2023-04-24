@@ -1,10 +1,9 @@
 
-
 import turtle
 
-
 t = turtle.Pen()
-s = turtle.Screen()
+s = t.getscreen()
+# s = turtle.Screen()
 
 s.title('My Turtle Drawing')
 s.bgcolor('white')
@@ -16,20 +15,10 @@ t.pencolor('black')
 t.pensize(1)
 t.speed(1)
 
-
 # spinral square
-
 
 for i in range(50):
     t.forward(3*i)
     t.right(90)
 
-
 turtle.done()
-
-
-
-
-
-
-
