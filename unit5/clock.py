@@ -55,12 +55,9 @@ def createClock(radius):
 def getWeekday(today):
     return ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'][today.weekday()]
 
-
 '''date'''
 def getDate(today):
     return f'{today.day} / {today.month} / {today.year}'
-
-
 
 def startTick(second_hand, minute_hand, hour_hand, printer):
     today = datetime.datetime.today()
@@ -97,8 +94,8 @@ def start():
     hour_hand = turtle.Turtle()
     hour_hand.shape('hour_hand')
     for hand in [second_hand, minute_hand, hour_hand]:
-            hand.shapesize(1, 1, 3)
-            hand.speed(0)
+        hand.shapesize(1, 1, 3)
+        hand.speed(0)
 
     # printer for write dynamic information (weekday, date)
     printer = turtle.Turtle()

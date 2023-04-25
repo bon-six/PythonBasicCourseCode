@@ -1,11 +1,12 @@
 
 import turtle
 
-s=turtle.Screen()
+t=turtle.Pen()
+s = t.getscreen()
+# s = turtle.Screen()
+
 s.title('Turtle Drawing')
 s.bgcolor('white')
-
-t=turtle.Pen()
 
 t.color('red', 'yellow')
 t.speed(0)
@@ -19,4 +20,5 @@ while True:
         break
 t.end_fill()
 
-s.mainloop()
+turtle.done()
+#s.mainloop()
