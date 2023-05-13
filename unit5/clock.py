@@ -4,52 +4,54 @@ import datetime
 
 clock_radius = 160
 
-def move(distance):
-    turtle.penup()
-    turtle.forward(distance)
-    turtle.pendown()
+def move(t, distance):
+    t.penup()
+    t.forward(distance)
+    t.pendown()
 
-
-
-def createHand(name, length):
-    turtle.reset()
-    move(-10)
-    turtle.begin_poly()
-    turtle.forward(length + 10)
-    turtle.end_poly()
-    hand = turtle.get_poly()
-    turtle.register_shape(name, hand)
-
+def createHand(win, name, length):
+    t = turtle.Pen()
+    t.hideturtle()
+    move(t, -10)
+    t.begin_poly()
+    t.forward(length + 10)
+    t.end_poly()
+    hand = t.get_poly()
+    win.register_shape(name, hand)
+    t.clear()
+    del t
 
 def createClock(radius):
-    turtle.reset()
-    turtle.pensize(7)
+    t = turtle.Pen()
+    t.hideturtle()
+    t.pensize(7)
     for i in range(60):
-        move(radius)
+        move(t, radius)
         if i % 5 == 0:
-            turtle.forward(20)
-            move(-radius-20)
+            t.forward(20)
+            move(t, -radius-20)
         else:
-            turtle.dot(5)
-            move(-radius)
-        turtle.right(6)
+            t.dot(5)
+            move(t, -radius)
+        t.right(6)
+    t.penup()
     # write clock numbers
-    turtle.home()
-    turtle.penup()
-    turtle.forward(clock_radius-30)
-    turtle.write('12', align='center', font=('Courier', 14, 'bold'))
-    turtle.home()
-    turtle.back(clock_radius-5)
-    turtle.write('6', align='center', font=('Courier', 14, 'bold'))
-    turtle.home()
-    turtle.right(95)
-    turtle.forward(clock_radius-15)
-    turtle.write('3', align='center', font=('Courier', 14, 'bold'))
-    turtle.home()
-    turtle.left(95)
-    turtle.forward(clock_radius-15)
-    turtle.write('9', align='center', font=('Courier', 14, 'bold'))
-    turtle.home()
+    t.home()
+    t.forward(clock_radius-30)
+    t.write('12', align='center', font=('Courier', 14, 'bold'))
+    t.home()
+    t.back(clock_radius-5)
+    t.write('6', align='center', font=('Courier', 14, 'bold'))
+    t.home()
+    t.right(95)
+    t.forward(clock_radius-15)
+    t.write('3', align='center', font=('Courier', 14, 'bold'))
+    t.home()
+    t.left(95)
+    t.forward(clock_radius-15)
+    t.write('9', align='center', font=('Courier', 14, 'bold'))
+    t.home()
+    del t
 
 '''weekdays'''
 def getWeekday(today):
@@ -59,7 +61,7 @@ def getWeekday(today):
 def getDate(today):
     return f'{today.day} / {today.month} / {today.year}'
 
-def startTick(second_hand, minute_hand, hour_hand, printer):
+def startTick(win, second_hand, minute_hand, hour_hand, printer):
     today = datetime.datetime.today()
     second = today.second + today.microsecond * 1e-6
     minute = today.minute + second / 60.
@@ -76,16 +78,16 @@ def startTick(second_hand, minute_hand, hour_hand, printer):
     printer.write(getDate(today), align='center', font=('Courier', 14, 'bold'))
     printer.home()
     # 100ms to tick once
-    turtle.ontimer(lambda :startTick(second_hand, minute_hand, hour_hand, printer), 100)
+    win.ontimer(lambda :startTick(win, second_hand, minute_hand, hour_hand, printer), 100)
 
 
-def start():
+def start(win):
     # stop update graph
-    turtle.tracer(False)
-    turtle.mode('logo')
-    createHand('second_hand', clock_radius-10)
-    createHand('minute_hand', clock_radius-40)
-    createHand('hour_hand', clock_radius-80)
+    win.tracer(False)
+    win.mode('logo')
+    createHand(win, 'second_hand', clock_radius-10)
+    createHand(win, 'minute_hand', clock_radius-40)
+    createHand(win, 'hour_hand', clock_radius-80)
     # turtle using the shape created
     second_hand = turtle.Turtle()
     second_hand.shape('second_hand')
@@ -104,10 +106,13 @@ def start():
 
     createClock(clock_radius)
     # start update graph
-    turtle.tracer(True)
-    turtle.ontimer(lambda :startTick(second_hand, minute_hand, hour_hand, printer), 100)
-    turtle.mainloop()
+    win.tracer(True)
+    win.ontimer(lambda :startTick(win, second_hand, minute_hand, hour_hand, printer), 100)
+    win.mainloop()
 
 
 if __name__ == '__main__':
-    start()
+    wn = turtle.Screen()
+    wn.title('Clock by Turtle')
+    wn.bgcolor('light green')
+    start(wn)

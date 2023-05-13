@@ -1,5 +1,4 @@
 
-
 class Vehicle:
     def __init__ (self,fuel_capacity=0,status='parked'):
         self.fuel_capacity = fuel_capacity
@@ -20,8 +19,6 @@ class Vehicle:
         print('vehicle stopped.')
         self.status = 'parked'
         print(f'this vehicle have {self.fuel_capacity:.2f}l fuel tank')
-
-
 
 class Car(Vehicle):
     # class variable, common for all instances
@@ -55,25 +52,11 @@ class Car(Vehicle):
         self.status = 'parked'
         print(f'this car have {self.seats:d} seats')
 
-
-my_car = Car(4,20)
-
-print(my_car)
-print(type(my_car))
-print(my_car.fuel_capacity)
-my_car.brake()  # sub class not defined method, will use the base class version
-print('-'*10)
-
-
-
-
 class Truck(Vehicle):
     # class variable, common for all instances
     category = 'cargo loading vehicle'
 
     # class method. there is no class method now.
-
-
 
     # constructor method
     def __init__(self,seats,load_capacity=0,status = 'parked'):
@@ -82,13 +65,13 @@ class Truck(Vehicle):
         self.load_capacity = load_capacity
         self.status = status
         print(f'a new truck with {seats:d} seats, {load_capacity:.2f}ton capacity, now it is {status:s}.')
-    '''
+
     # instance method
     def start(self):
         print('engine started! Truck runninng!')
         self.status = 'moving'
         print(f'this truck have {self.load_capacity:.2f}ton capacity')
-    '''
+
     def stop(self):
         print('Truck stopped')
         self.status = 'parked'
@@ -104,18 +87,44 @@ class Truck(Vehicle):
             print('load capacity not defined')
             return False
 
-my_truck = Truck(2,1.2)
+def run_test1():
+    my_car = Car(4,20)
+    print(my_car)
+    print(type(my_car))
+    print(my_car.fuel_capacity)
+    my_car.brake()  # sub class not defined method, will use the base class version
+    print('-'*10)
 
-print(my_truck)
-print(type(my_truck))
-print(my_truck.fuel_capacity)
-can_load = my_truck.check_can_load(2.5)
-print(f'check loading is {can_load}')
-print('-'*10)
+def run_test2():
+    my_truck = Truck(2,1.2)
+    print(my_truck)
+    print(type(my_truck))
+    print(my_truck.fuel_capacity)
+    can_load = my_truck.check_can_load(2.5)
+    print(f'check loading is {can_load}')
 
+def run_test3():
+    my_car = Car(4,20)
+    my_truck = Truck(2,1.2)
+    for my_vehicle in [my_car, my_truck]:
+        # brake() will go to base class version
+        # start() and stop() will go to sub-class version
+        my_vehicle.start()
+        my_vehicle.brake()
+        my_vehicle.stop()
+        print('-'*60)
+    del Truck.start
+    for my_vehicle in [my_car, my_truck]:
+        # because now Truck class don't have the start()
+        # so the truck.start() will call to base class version.
+        my_vehicle.start()
+        my_vehicle.brake()
+        my_vehicle.stop()
+        print('-'*60)
 
-for my_vehicle in [my_car, my_truck]:
-    my_vehicle.start()  # will be the sub class new version method called
-    my_vehicle.brake()  # sub class not defined, use base class version
-    my_vehicle.stop()   # will be the sub class new version method called
-    print()
+if __name__ == '__main__':
+    run_test1()
+    print('+'*60)
+    run_test2()
+    print('+'*60)
+    run_test3()

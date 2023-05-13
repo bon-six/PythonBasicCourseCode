@@ -2,25 +2,19 @@
 class MyList (list):
     pass
 
+def run_test1():
+    mylist_1 = MyList()
+    mylist_1.append('the first')
+    mylist_1.append('and second')
+    mylist_1.append('then third')
+    print(mylist_1)
+    print(type(mylist_1))
+    print()
 
-mylist_1 = MyList()
-
-mylist_1.append('the first')
-
-mylist_1.append('and second')
-
-mylist_1.append('then third')
-
-print(mylist_1)
-print(type(mylist_1))
-print()
-
-mylist_1.sort()
-print(mylist_1)
-print(type(mylist_1))
-print()
-
-
+    mylist_1.sort()
+    print(mylist_1)
+    print(type(mylist_1))
+    print()
 
 class MyAnotherList (list):
     # override with new sort mechanism.
@@ -48,20 +42,21 @@ class MyAnotherList (list):
         store = temp
         print(self)
         
+def run_test2():
+    mylist_2 = MyAnotherList()
+    mylist_2.append('then third')
+    mylist_2.append('the first')
+    mylist_2.append('and second')
 
-mylist_2 = MyAnotherList()
+    print(mylist_2)
+    print(type(mylist_2))
+    print()
 
-mylist_2.append('then third')
+    mylist_2.sort()
+    print(mylist_2)
+    print(type(mylist_2))
+    print()
 
-mylist_2.append('the first')
-
-mylist_2.append('and second')
-
-print(mylist_2)
-print(type(mylist_2))
-print()
-
-mylist_2.sort()
-print(mylist_2)
-print(type(mylist_2))
-print()
+if __name__ == '__main__':
+    run_test1()
+    run_test2()

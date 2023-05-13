@@ -1,6 +1,4 @@
 
-a=['a','b','c','d', 'e']
-
 def permute(done_permute, current_permute, remain_item):
     if not remain_item:
         done_permute.append(current_permute)
@@ -34,9 +32,12 @@ def comb_any(choosen, current_list, remain, i):
             new_remain = remain.copy()
             choose_any(choosen, next_list, new_remain, i-1)
 
+def main():
+    a=['a','b','c','d', 'e']
+    choosen=[]
+    choose_any(choosen,[],a,2)
+    print(choosen)
+    print(a)
 
-choosen=[]
-choose_any(choosen,[],a,2)
-print(choosen)
-print(a)
-
+if __name__ == '__main__':
+    main()

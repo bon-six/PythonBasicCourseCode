@@ -23,7 +23,6 @@ class A1:
         print(f'a1 {self.a1}')
         print(f'now at A1')
 
-
 class B1(A,A1):
     def __init__(self):
         super().__init__()
@@ -36,9 +35,9 @@ class B1(A,A1):
         print(f'b1 {self.b1}')
         print(f'now at B1')
 
-x=B1()
-x.foo()
-
+def run_test1():
+    x=B1()
+    x.foo() # will not call A1.foo() because in A.foo() there is no super().foo() to continue the chain.
 
 class B(A):
     def __init__(self):
@@ -52,8 +51,6 @@ class B(A):
         print(f'b {self.b}')
         print(f'now at B')
 
-
-
 class C(A):
     def __init__(self):
         super().__init__()
@@ -65,8 +62,6 @@ class C(A):
         super().foo()
         print(f'c {self.c}')
         print(f'now at C')
-
-
 
 class D(B,C):
     def __init__(self):
@@ -80,7 +75,11 @@ class D(B,C):
         print(f'd {self.d}')
         print(f'now at D')
 
+def run_test2():
+    d = D()
+    d.foo()
+    print(d.d)
 
-d = D()
-d.foo()
-print(d.d)
+if __name__ == '__main__':
+    run_test1()
+    run_test2()

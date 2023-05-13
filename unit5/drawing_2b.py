@@ -1,16 +1,12 @@
 
 import turtle
 
-t = turtle.Pen()
-s = t.getscreen()
-# s = turtle.Screen()
-
+s = turtle.Screen()
 s.title('My Turtle Drawing')
 s.bgcolor('white')
-
+t = turtle.Pen()
 t.shape('classic')
 t.shapesize(1,1,1)
-
 t.speed(0)
 
 # spinral circles, 4

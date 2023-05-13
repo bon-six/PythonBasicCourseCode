@@ -110,7 +110,6 @@ def collision_bounce(a,b):
             b['dir'][0] = -1
             a['dir'][1] = 1
             b['dir'][1] = -1
-            
 
 if __name__ == "__main__":
     print ("started")
@@ -125,7 +124,7 @@ if __name__ == "__main__":
             break
 
         screen.fill(BLACK)
-        
+
         for b in blocks:
             move(b)
 

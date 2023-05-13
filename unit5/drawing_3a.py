@@ -1,21 +1,16 @@
 
 import turtle
 
-t = turtle.Pen()
-s = t.getscreen()
-# s = turtle.Screen()
-
+s = turtle.Screen()
 s.title('My Turtle Drawing')
 s.bgcolor('black')
-
+t = turtle.Pen()
 t.shape('classic')
 t.shapesize(1,1,1)
 t.pen(speed=0)
 
 # 2 spin rosette, 4 sides
-
 colors = ['red','green','yellow','blue','purple']
-
 for i in range(200):
     t.pen(pencolor=colors[i%4])
     t.forward(i)

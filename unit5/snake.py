@@ -74,6 +74,8 @@ def move():
         head.setx(x+20)
 
 def gameover():
+    global score
+    global delay
     time.sleep(1)
     head.goto(0, 0)
     head.direction = "Stop"

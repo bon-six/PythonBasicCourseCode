@@ -1,7 +1,8 @@
 
 import turtle
+
+s=turtle.Screen()
 t=turtle.Turtle()
-s=t.getscreen()
 
 t.speed('fastest')
 # turning the turtle to face upwards
@@ -42,3 +43,4 @@ def y(sz, level):
 
 # tree of size 80 and level 7
 y(80, 9)
+s.mainloop()

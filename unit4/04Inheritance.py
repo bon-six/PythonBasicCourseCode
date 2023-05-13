@@ -1,5 +1,4 @@
 
-
 class Vehicle:
     def __init__ (self,fuel_capacity=0,status='parked'):
         self.fuel_capacity = fuel_capacity
@@ -7,10 +6,10 @@ class Vehicle:
         print(f'a new vehicle with {fuel_capacity:.2f}l fuel tank, now it is {status:s}.')
 
     # instance method
-    def start(i):
+    def start(self):
         print('engine started! vehicle runninng!')
-        i.status = 'moving'
-        print(f'this vehicle have {i.fuel_capacity:.2f}l fuel tank')
+        self.status = 'moving'
+        print(f'this vehicle have {self.fuel_capacity:.2f}l fuel tank')
 
     def brake(self):
         print('vehicle speed reduced')
@@ -20,8 +19,6 @@ class Vehicle:
         print('vehicle stopped.')
         self.status = 'parked'
         print(f'this vehicle have {self.fuel_capacity:.2f}l fuel tank')
-
-
 
 class Car(Vehicle):
     # class variable, common for all instances
@@ -54,14 +51,14 @@ class Car(Vehicle):
         self.status = 'parked'
         print(f'this car have {self.seats:d} seats')
 
+def run_test1():
+    my_car = Car(4,32)
 
-my_car = Car(4,32)
+    print(my_car)
+    print(type(my_car))
+    print()
 
-print(my_car)
-print(type(my_car))
-print()
-
-my_car.start()
+    my_car.start()
 
 
 
@@ -70,8 +67,6 @@ class Truck(Vehicle):
     category = 'cargo loading vehicle'
 
     # class method. there is no class method now.
-
-
 
     # constructor method
     def __init__(self,seats,load_capacity=0,status = 'parked'):
@@ -85,7 +80,7 @@ class Truck(Vehicle):
         print('engine started! Truck runninng!')
         self.status = 'moving'
         print(f'this truck have {self.load_capacity:.2f}ton capacity')
-    
+
     def stop(self):
         print('Truck stopped')
         self.status = 'parked'
@@ -101,12 +96,14 @@ class Truck(Vehicle):
             print('load capacity not defined')
             return False
 
-my_truck = Truck(2,1.2)
+def run_test2():
+    my_truck = Truck(2,1.2)
+    print(my_truck)
+    print(type(my_truck))
+    can_load = my_truck.check_can_load(2.5)
+    print(f'check loading is {can_load}')
 
-print(my_truck)
-print(type(my_truck))
-can_load = my_truck.check_can_load(2.5)
-print(f'check loading is {can_load}')
-print()
-
-
+if __name__ == '__main__':
+    run_test1()
+    print('-'*60)
+    run_test2()

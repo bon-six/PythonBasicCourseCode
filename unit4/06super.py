@@ -1,5 +1,4 @@
 
-
 class Vehicle:
     def __init__ (self,fuel_capacity=0,status='parked'):
         self.fuel_capacity = fuel_capacity
@@ -20,8 +19,6 @@ class Vehicle:
         print('vehicle stopped.')
         self.status = 'parked'
         print(f'this vehicle have {self.fuel_capacity:.2f}l fuel tank')
-
-
 
 class Car(Vehicle):
     # class variable, common for all instances
@@ -54,22 +51,17 @@ class Car(Vehicle):
         self.status = 'parked'
         print(f'this car have {self.seats:d} seats')
 
-
-my_car = Car(4,32)
-
-print(my_car)
-print(type(my_car))
-print()
-
-
+def run_test1():
+    my_car = Car(4,32)
+    print(my_car)
+    print(type(my_car))
+    print()
 
 class Truck(Vehicle):
     # class variable, common for all instances
     category = 'cargo loading vehicle'
 
     # class method. there is no class method now.
-
-
 
     # constructor method
     def __init__(self,seats,load_capacity=0,status = 'parked'):
@@ -99,12 +91,14 @@ class Truck(Vehicle):
             print('load capacity not defined')
             return False
 
-my_truck = Truck(2,1.2)
+def run_test2():
+    my_truck = Truck(2,1.2)
+    print(my_truck)
+    print(type(my_truck))
+    can_load = my_truck.check_can_load(2.5)
+    print(f'check loading is {can_load}')
+    print()
 
-print(my_truck)
-print(type(my_truck))
-can_load = my_truck.check_can_load(2.5)
-print(f'check loading is {can_load}')
-print()
-
-
+if __name__ == '__main__':
+    run_test1()
+    run_test2()

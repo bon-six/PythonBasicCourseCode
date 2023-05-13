@@ -23,4 +23,3 @@ else:
             print(f'unexpected error happened. {sys.exc_info()[0]}')
         else:
             print(f'{a} = {b} * {c} + {d}')
-            

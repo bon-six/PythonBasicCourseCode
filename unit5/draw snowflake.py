@@ -2,18 +2,16 @@ import turtle
 
 
 s=turtle.Screen()
-t=turtle.Pen()
-t.penup()
-
 s.title('draw snowflake')
 s.setup(1024,768)
+t=turtle.Pen()
+t.penup()
 
 t.goto(0,320)
 t.setheading(300)
 t.speed(0)
 
 t.pendown()
-
 
 def draw_cuspline5():
     t.fd(1)

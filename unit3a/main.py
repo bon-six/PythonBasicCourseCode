@@ -1,4 +1,3 @@
-
 from num_calc import (add, multiply)
 
 def main():

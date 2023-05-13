@@ -71,11 +71,11 @@ class Hangman:
         self.hang_parts += 1
         if self.hang_parts == 6:
             return -1   # hangman finished. all parts hang already
-        else:
-            return 0   # still have parts not hang.
+
+        return 0   # still have parts not hang.
 
     def __str__(self):
-        return(self.HANGMANPICS[self.hang_parts])
+        return self.HANGMANPICS[self.hang_parts]
 
 
 class SecretKeeper:
@@ -102,17 +102,17 @@ green yellow silver gold'''.split()
         self.identified_letters[position] = new_letter
         if '_' in self.identified_letters:
             return 1  #still have letters not identified
-        else:
-            return 2   #all letters has been identified
-    
+
+        return 2   #all letters has been identified
+
     def check_new_letter(self,new_letter):
-        for i in range (len(self.secret)):
-            if new_letter == self.secret[i] and self.identified_letters[i] == '_':
+        for i,x in enumerate(self.secret):
+            if new_letter == x and self.identified_letters[i] == '_':
                 return i   # new guess letter match to i position of secret
         return -1   # new guess letter not match
 
     def __str__(self):
-        return(''.join(self.identified_letters))
+        return ''.join(self.identified_letters)
 
 class GameController:
 
@@ -135,7 +135,6 @@ class GameController:
     def show_promts(self):
         print(self.hangman)
         print(self.secret_keeper)
-        
 
     def game_loop(self):
         self.start_game()
@@ -164,29 +163,27 @@ class GameController:
                 else:
                     pos = self.secret_keeper.check_new_letter(new_letter)
 
-            if (pos == -1):
+            if pos == -1:
                 if (discovered_this_guess > 0):
                     print('Well done. you get one letter from my secret.')
                     discovered_this_guess = 0
                     continue
-                else:
-                    print('guess wrong. letter not in my secret.')
-                    game_over = self.hangman.add_parts()
-                    if game_over == -1:
-                        print('Uh-oh. game over.')
-                        self.show_promts()
-                        print('my secret is {0:s}'.format(''.join(self.secret_keeper.secret)))
-                        answer = input('Do you want play one more time?>>>')
-                        if answer == 'yes' or answer == 'y':
-                            # play game again with new secret
-                            self.replay_game()
-                        else:
-                            self.exit_game()
-                        
-            
+
+                print('guess wrong. letter not in my secret.')
+                game_over = self.hangman.add_parts()
+                if game_over == -1:
+                    print('Uh-oh. game over.')
+                    self.show_promts()
+                    print('my secret is {0:s}'.format(''.join(self.secret_keeper.secret)))
+                    answer = input('Do you want play one more time?>>>')
+                    if answer == 'yes' or answer == 'y':
+                        # play game again with new secret
+                        self.replay_game()
+                    else:
+                        self.exit_game()
+
         return self.score
-        
-        
+
 if __name__ == '__main__' :
     gc = GameController()
     score = gc.game_loop()

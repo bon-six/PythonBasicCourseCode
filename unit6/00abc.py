@@ -42,5 +42,3 @@ while True:  # game loop
     # update function can draw only part of the screen
 
     clock.tick(FPS)
-    
-    

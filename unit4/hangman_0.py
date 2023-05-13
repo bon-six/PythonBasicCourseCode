@@ -72,7 +72,10 @@ sand some good what else too simple end start lock open will never hold talk lou
 list top bottom right left side effect nice well white black pink red blue orange purple
 green yellow silver gold'''.split()
 
-
+secret=''
+identified_letters=[]
+hang_parts=0
+score=0
 
 def reset_game():
     global identified_letters
@@ -85,24 +88,27 @@ def reset_game():
     # initialize the hangman body part start from 0
     hang_parts = 0
 
-
 def show_game_prompt():
+    global identified_letters
+    global hang_parts
     print(HANGMANPICS[hang_parts])
     print(''.join(identified_letters))
 
 def check_new_letter(new_letter):
+    global identified_letters
+    global secret
     for i in range (len(secret)):
         if new_letter == secret[i] and identified_letters[i] == '_':
             return i   # new guess letter match to i position of secret
     return -1   # new guess letter not match
 
 def add_identified(new_letter,position):
+    global identified_letters
     identified_letters[position] = new_letter
     if '_' in identified_letters:
         return 1  #still have letters not identified
     else:
         return 2   #all letters has been identified
-
 
 def add_hangman_parts():
     global hang_parts
@@ -112,48 +118,41 @@ def add_hangman_parts():
     else:
         return 0   # still have parts.
 
+def main():
+    reset_game()
 
+    game_on = True
+    while game_on :
+        show_game_prompt()
 
-secret=''
-identified_letters=[]
-hang_parts=0
-score=0
+        new_letter = input('Please give a guess which letter is in my secret word.>>>')
+        new_letter = new_letter[0].lower()  # take only one letter guess for one round
 
-reset_game()
+        pos = check_new_letter(new_letter)
+        discovered_this_guess = 0
+        while pos != -1 :
+            discovered_this_guess += 1
+            finished = add_identified(new_letter,pos)
+            if finished == 2:
+                print('Congratulations. Secret all revealed.')
+                score+=1
+                show_game_prompt()
+                answer = input('Do you want play one more time?>>>')
+                if answer == 'yes' or answer == 'y':
+                    # play game again with new secret
+                    reset_game()
+                else:
+                    game_on = False
+                break
 
-game_on = True
-while game_on :
-    show_game_prompt()
-
-    new_letter = input('Please give a guess which letter is in my secret word.>>>')
-    new_letter = new_letter[0]  # take only one letter guess for one round
-    new_letter = new_letter.lower()
-
-    pos = check_new_letter(new_letter)
-    discovered_this_guess = 0;
-    while pos != -1 :
-        discovered_this_guess += 1
-        finished = add_identified(new_letter,pos)
-        if finished == 2:
-            print('Congratulations. Secret all revealed.')
-            score+=1
-            show_game_prompt()
-            answer = input('Do you want play one more time?>>>')
-            if answer == 'yes' or answer == 'y':
-                # play game again with new secret
-                reset_game()
-            else:
-                game_on = False
-            break
-        else:
             pos = check_new_letter(new_letter)
 
-    if (pos == -1):
-        if (discovered_this_guess > 0):
-            print('Well done. you get one letter from my secret.')
-            discovered_this_guess = 0
-            continue
-        else:
+        if (pos == -1):
+            if (discovered_this_guess > 0):
+                print('Well done. you get one letter from my secret.')
+                discovered_this_guess = 0
+                continue
+
             print('guess wrong. letter not in my secret.')
             game_over = add_hangman_parts()
             if game_over == -1:
@@ -161,11 +160,13 @@ while game_on :
                 show_game_prompt()
                 print('my secret is {0:s}'.format(''.join(secret)))
                 answer = input('Do you want play one more time?>>>')
-                if answer == 'yes' or answer == 'y':
+                if answer in ('yes', 'y'):
                     # play game again with new secret
                     reset_game()
                 else:
                     game_on = False
-                    
-        
-print(f'You win {score:d} times')
+
+    print(f'You win {score:d} times')
+
+if __name__ == '__main__':
+    main()

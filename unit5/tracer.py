@@ -1,9 +1,10 @@
 # importing package
 import turtle
 
-t=turtle.Turtle()
-s=t.getscreen()
+s=turtle.Screen()
 s.bgcolor('black')
+
+t=turtle.Turtle()
 t.pencolor('white')
 
 # loop for motion with
